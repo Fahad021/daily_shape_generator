@@ -29,8 +29,8 @@ def plot(filename, column, output_fig, x_axis, y_axis, year):
 
 
 if __name__ == "__main__":
-    filename = 'USA_KS_Topeka-Forbes.AFB.724565_TMY3_BASE.csv'
-    column = ['Electricity:Facility [kW](Hourly)']
+    filename = 'XXXXXX.csv'
+    column = ['XXXXX']
     output_fig = 'seaborn-plot.png'
     x_axis = 'hour'
     y_axis = column[0]
