@@ -8,7 +8,7 @@ import datetime
 
 
 def plot(filename, column, output_fig, x_axis, y_axis, year):
-    df = pd.read_csv(filename, usecols = column)
+    df = pd.read_csv(filename, usecols = column, nrows = 8760)
     dti = pd.date_range(pd.to_datetime(datetime.datetime(year,1,1)), periods=8760, freq="H")
     df['Datetime'] = dti
     df.index = df['Datetime']
@@ -23,7 +23,8 @@ def plot(filename, column, output_fig, x_axis, y_axis, year):
                  style = 'month',
                  markers=True,
                  sizes = [13,8],
-                 legend = 'auto')
+                 legend = 'auto',
+                 ci = None)
     plt.savefig(output_fig, dpi=300)
 
 
