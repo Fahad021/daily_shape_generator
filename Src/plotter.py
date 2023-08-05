@@ -12,9 +12,7 @@ def plot(filename, column, output_fig, x_axis, y_axis, year, timezone):
     if filename.endswith('.xlsx'):
         wb = load_workbook(filename)
         sheet = wb.active
-        all_data = []
-        for i in range (2,8762):
-            all_data.append(sheet["A"+str(i)].value)
+        all_data = [sheet[f"A{str(i)}"].value for i in range (2,8762)]
         df = pd.DataFrame(all_data,columns = column)
     dti = pd.date_range(pd.to_datetime(datetime.datetime(year,1,1)), periods=8760, freq="H", tz = timezone)
     df['Datetime'] = dti
@@ -22,7 +20,7 @@ def plot(filename, column, output_fig, x_axis, y_axis, year, timezone):
     df['month'] = pd.to_datetime(df.index).month
     df['month'] = df['month'].apply(lambda x: calendar.month_abbr[x])
     df['hour'] = pd.to_datetime(df.index).hour
-    
+
     sns.lineplot(x=x_axis,
                  y=y_axis,
                  hue='month',
